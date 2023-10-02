@@ -1,0 +1,38 @@
+body {
+    background-color: #000000;
+    color: #ff474c;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #ff474c;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    margin: 0;
+    color: #000000;
+}
+
+img {
+    width: 600px; 
+    height: auto; 
+    display: block; 
+    margin: 0 auto; /
+}
+
+section {
+    background-color: #ff474c;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+h2 {
+    color: #000000;
+}
+
+p {
+    color: #000000;
+}
