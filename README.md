@@ -52,15 +52,78 @@ Furthermore, a [Tableau dashboard](https://public.tableau.com/app/profile/ayroza
 - Numerical columns were scaled with StandardScalar and all categorical columns were encoded using get_dummies. 
 - The preprocessed data was split into a testing and training set.
 
+The script containing the full preprocessing steps as well as the 5 initial models can be found [here](Notebooks/2-Prediction_Models/cvd_prediction_models.ipynb).
+
 ## Model 1: Logistic Regression
+
+Logistic regression is a statistical method for binary classification, such as predicting whether someone has Cardiovascular Disease (CVD) or not based on multiple factors like age, BMI, and general health. It employs a sigmoid function to transform the combined effects of these factors into a probability of CVD presence. By estimating coefficients through several techiques, it establishes a decision boundary and classifies individuals as either having CVD or not. Model performance is assessed using metrics like accuracy and precision.
+
+The solver we used to optimize the parameters of the logistic regression model was 'saga' which os better suited for datasets with a large number of features.
+
+The following classification report was produced:
+
+![Screenshot 2023-10-04 at 19 32 21](https://github.com/ashejaz/project-4-predicting-CVD/assets/127614970/7e495c73-30e3-46f1-9b6f-cffcfb4eb328)
+
+Hyperparameter tuning was explored to enhance the logistic regression model's performance. Initially, the 'saga' solver was chosen for its effectiveness with large datasets, and alternatives like 'lbfgs' weren't suitable for our specific problem. 'sag' was not used because it's an older version of 'saga' and 'saga' remained the preferred choice. Hence, optimisation was not performed for this model.
 
 ## Model 2: Support Vector Machines
 
+Support Vector Machines (SVMs) are classification algorithms that find a hyperplane, or decision boundary, in multi-dimensional spaces to separate two classes, like CVD and non-CVD. They excel by maximizing the margin, which is the space between the boundary and the nearest data points, making them robust for complex datasets. SVMs can adapt to non-linear data through the kernel trick, handle multi-class classification, and offer control through a regularisation parameter.
+
+The following classification report was produced:
+
+![image (1)](https://github.com/ashejaz/project-4-predicting-CVD/assets/127614970/c2ab1114-c29e-4a17-93b7-3f46ac5bb9dc)
+
+### Optimisation
+
+The kernel hyperparameters of this model were adjusted to potentially better suit our dataset's structure, which gave the following results:
+
+![image (2)](https://github.com/ashejaz/project-4-predicting-CVD/assets/127614970/3bffba86-706c-458d-88d0-14c51005156e)
+
+The full model optimisation and analysis of results can be found [here](Notebooks/3-Optimised_Prediction_Models/SVM_model_optimisation.ipynb).
+
 ## Model 3: Decision Tree
+
+Decision Trees are hierarchical, non-linear structures that recursively divide a dataset into subsets by selecting the most informative features at each node. This selection is based on criteria like Gini impurity or information gain, which measure the data's homogeneity within each branch. Decision Trees create a series of if-then-else conditions that navigate from the root node to leaf nodes, where decisions are made. This tree structure offers interpretability, as you can trace the path from root to leaf to understand how a decision is reached.
+
+The following classification report was produced:
+
+![Screenshot 2023-10-04 at 20 41 55](https://github.com/ashejaz/project-4-predicting-CVD/assets/127614970/8a5f40c0-6b14-4025-a9c8-45d79c474bb3)
+
+### Optimisation
+
+The optimisation of the Decision Tree model focused on manually fine-tuning hyperparameters such as max_depth, min_samples_split, and min_samples_leaf to specific values. By limiting the tree's depth and controlling the granularity of splits, we aimed to prevent overfitting and ensure the model's generalisation to new data.
+
+This yielded the following results:
+
+![Screenshot 2023-10-04 at 20 44 33](https://github.com/ashejaz/project-4-predicting-CVD/assets/127614970/d2e4b72e-db9c-4fdc-919a-0546e929f21d)
+
+The full model optimisation and analysis of results can be found [here](Notebooks/3-Optimised_Prediction_Models/decision_tree_optimisation.ipynb).
 
 ## Model 4: Random Forest
 
+Random Forests are ensemble methods that enhance predictive accuracy and alleviate overfitting by aggregating the outputs of multiple Decision Trees. They work by creating a collection of Decision Trees, each trained on a different subset of the data and employing random feature subsets. These trees' results are combined, reducing variance and improving generalization. Additionally, Random Forests offer feature importance analysis, measuring how much each feature influences predictions.
+
+The following classification report was produced:
+
+![Screenshot 2023-10-04 at 20 47 37](https://github.com/ashejaz/project-4-predicting-CVD/assets/127614970/5366a0de-859d-430e-a8bb-ca34eec9ae0c)
+
+
+### Optimisation
+
+The optimisation of the Random Forest model involved defining a parameter distribution dictionary for key hyperparameters with a RandomizedSearchCV object named random_search, employing cross-validation and parallel processing to find the best hyperparameter combination for improving model accuracy. 
+
+This yielded the following results:
+
+![Screenshot 2023-10-04 at 20 51 08](https://github.com/ashejaz/project-4-predicting-CVD/assets/127614970/334c4256-a4af-4b7f-8c18-a0d1e1f19e0f)
+
+The full model optimisation and analysis of results can be found [here](Notebooks/3-Optimised_Prediction_Models/random_forest_optimisation.ipynb).
+
 ## Model 5: Neural Network
+
+Neural Networks have gained prominence owing to their capacity to decipher intricate data patterns. These models comprise layers of interconnected artificial neurons, each performing weighted computations. They excel in feature extraction and nonlinear modeling, allowing them to capture intricate relationships between predictors and CVD outcomes. Neural Networks are particularly effective when ample data is available, as they can learn complex, data-driven representations that may elude more traditional models.
+
+An initial model with 
 
 ## Summary
 
