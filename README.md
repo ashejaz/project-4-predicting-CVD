@@ -33,6 +33,7 @@ For each risk factor, the following visualisations were created:
 3) The prevalence per each risk factor in heart disease cases to remove biases of group ratios. 
 
 For example, for the 'exercise' risk factor we were able to visualise the following:
+
 1) 
 ![image](https://github.com/ashejaz/project-4-predicting-CVD/assets/126973634/af62a956-ed5f-4bc7-9aa3-f7db8c52803f)
 
@@ -129,15 +130,47 @@ An initial model with 2 hidden layers and 64 nodes in each layer produced the fo
 
 However, after around 20 epochs the validation accuracy plateaud and started to decrease, and the validation loss appeared to increase. This suggested that the model was overfitting and that though it performs well on the training data, it may struggle on unseen data.
 
-### Opimisation 1
+### Optimisation 1
 
-The kerastuner 
+The kerastuner was used to select the best hyperparameters for the model which selected 5 layers. Early stopping was used to reduce overfitting.
+
+The following classification report was produced:
+
+![Screenshot 2023-10-04 at 21 43 11](https://github.com/ashejaz/project-4-predicting-CVD/assets/127614970/347bd945-2e9f-4b97-8ef4-02ba98edb8a4)
+
+However, though the model performance improved, overfitting was still occuring.
+
+The full model optimisation and analysis of results can be found [here](Notebooks/3-Optimised_Prediction_Models/neural_network_optimisation_1.ipynb).
+
+### Optimisation 2
+
+The hyperparameters for the 3rd best performing model were selected as they involved only 2 layers with similar accuracy values to the best performing model. 
+
+The hope was that by reducing the complexity of the model, overfitting would be reduced and the accuracy would be maintained.
+
+The classification report however, did not show significant improvement compared to the previous optimisation:
+
+![Screenshot 2023-10-04 at 21 51 10](https://github.com/ashejaz/project-4-predicting-CVD/assets/127614970/05027232-fa8a-496b-84e6-2e5c2baa5fb4)
+
+This suggests that overfitting is an ongoing issue with our data.
+
+The full model optimisation and analysis of results can be found [here](Notebooks/3-Optimised_Prediction_Models/neural_network_optimisation_2.ipynb).
+
+H5 files for all three neural network models ran can be found in the [h5 folder](h5).
 
 ## Summary
 
 Initially, the Random Forest Model performed the best out of the 5 models, reaching 93% for both accuracy and precision. 
 
+**ADD CHART HERE**
+
 However, after optimisation, the Decision Tree became the best performing model achieving 93% accuracy and 94% precision beating the Random Forest by 1% precision.
+
+**ADD CHART HERE**
+
+The script and analysis for the comparison of our optimised models can be found [here](Notebooks/4-Best_Model/cvd_best_model.ipynb).
+
+A [summary table](model_performance_summary.xlsx) with accuracy and precision values for all models is pictured below:
 
 ![Screenshot 2023-10-04 at 18 13 09](https://github.com/ashejaz/project-4-predicting-CVD/assets/127614970/c96e149a-24a9-42ca-9958-c9ba3e739563)
 
