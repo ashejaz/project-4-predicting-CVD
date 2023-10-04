@@ -20,27 +20,37 @@ The Kaggle dataset consists of a condensed version of the BRFSS, including wheth
 
 The cleaned data was then uploaded to a public [Google Sheets link](https://docs.google.com/spreadsheets/d/e/2PACX-1vSDchXr1EhgCSsxlxJ3lWPhh1kT5EJS3yv4DJ2YLeMIC3y4uq-Pp4EQknrs9zAiaI3ulne2Jyi6gR6G/pub?gid=602879552&single=true&output=csv) for easier access when using Google Colab.
 
+Additional insights were also created in a separate Tableau workbook to gain a wider bredth of knowledge in relation to ethnicity and territory, this data was sourced from [CDC](https://data.cdc.gov/Heart-Disease-Stroke-Prevention/Heart-Disease-Mortality-Data-Among-US-Adults-35-by/jiwm-ppbh). This dataset contained heart disease mortality data among US adults (35+) by state/ territory and country - 2018-2020. 
+
 ## Data Exploration
 
 The features within the dataset were explored and visualised using PySpark, SparkSQL and Plotly.
 
 For each risk factor, the following visualisations were created:
 
-- 
--
--
+1) The breakdown of the risk factor demographic within the dataset was explored.
+2) The proportion of each risk factor present in heart disease cases.
+3) The prevalence per each risk factor in heart disease cases to remove biases of group ratios. 
 
 For example, for the 'exercise' risk factor we were able to visualise the following:
+1) 
+![image](https://github.com/ashejaz/project-4-predicting-CVD/assets/126973634/af62a956-ed5f-4bc7-9aa3-f7db8c52803f)
 
+2)
+![image](https://github.com/ashejaz/project-4-predicting-CVD/assets/126973634/783ad295-4243-4ed1-9b2e-52e4e3df0438)
 
-
+3) 
+![image](https://github.com/ashejaz/project-4-predicting-CVD/assets/126973634/912117f1-0365-4c3d-bae7-34c4221accae)
 
 
 The script containing all script and visualisations can be found [here](Notebooks/1-Data_Exploration/cvd_data_exploration.ipynb).
 
-Furthermore, a [Tableau dashboard](https://public.tableau.com/app/profile/ayroza.dobson/viz/Project4-PredictingCVD/Story1?publish=yes)
+Furthermore, a [Tableau dashboard](https://public.tableau.com/app/profile/ayroza.dobson/viz/Project4-PredictingCVD/Story1?publish=yes) was created to convey the disparity of heart disease mortality by state, gender, and race to an audience.
 
 ## Data Preprocessing
+- The classes in our dataset were heavily imbalanced, for every 1 person who had heart disease, there were 12 who did not.Therefore all datapoints outside of 1 standard deviation from the mean were removed.   This, along with random oversampling allowed us to balance the classes in our dataset.
+- Numerical columns were scaled with StandardScalar and all categorical columns were encoded using get_dummies. 
+- The preprocessed data was split into a testing and training set.
 
 ## Model 1: Logistic Regression
 
