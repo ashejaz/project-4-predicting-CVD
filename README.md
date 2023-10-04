@@ -123,7 +123,7 @@ The full model optimisation and analysis of results can be found [here](Notebook
 
 Neural Networks have gained prominence owing to their capacity to decipher intricate data patterns. These models comprise layers of interconnected artificial neurons, each performing weighted computations. They excel in feature extraction and nonlinear modeling, allowing them to capture intricate relationships between predictors and CVD outcomes. Neural Networks are particularly effective when ample data is available, as they can learn complex, data-driven representations that may elude more traditional models.
 
-An initial model with 
+An initial model with 2 hidden layers and 64 nodes
 
 ## Summary
 
